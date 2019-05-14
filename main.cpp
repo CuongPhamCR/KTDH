@@ -16,8 +16,15 @@ void cuong();
 void Elipse(int x_center,int y_center,int a,int b,int color);
 void put5pixel(int x,int y);
 void MidPoint(int x1,int y1,int x2,int y2);
+<<<<<<< HEAD
 void drawCircleMidpoint(int xc, int yc, int r); // duong tron midpoint
 void elipMidpoint(int xc,int yc, int a, int b); // elip midpoint
+=======
+void Dung()
+{
+	cout <<"DUng";
+}
+>>>>>>> d5a3ea295961ffc4b402b1bcf96f7859c45dc02d
 void put5pixel(int x,int y)
 {
 	int x1,x2,y1,y2;
@@ -42,8 +49,15 @@ void cuong() {
 				d1y=y;
 			}
 			cout << x << " " << y << endl;
+<<<<<<< HEAD
 			if (kt==0) drawCircleMidpoint(d1x,d1y,20);			
 			kt=1;
+=======
+<<<<<<< HEAD
+=======
+			
+>>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
+>>>>>>> d5a3ea295961ffc4b402b1bcf96f7859c45dc02d
 			if(x>=TDGOC_X && y>=TDGOC_Y)
 			{
 				put5pixel(x,y);
@@ -68,6 +82,10 @@ void cuong() {
 					menu();
 				}
 			
+<<<<<<< HEAD
+
+=======
+>>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
 		}
 		delay(0.00001);
 	}
@@ -81,11 +99,22 @@ void vetoado()
 {
 	setcolor(3);
 	// ve doc
+<<<<<<< HEAD
+=======
 
+<<<<<<< HEAD
 	for(int i=TDGOC_X+5;i<TDCUOI_X;i+=5)
+=======
+>>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
+	for(int i=TDGOC_X+5;i<=TDCUOI_X;i+=5)
+>>>>>>> d5a3ea295961ffc4b402b1bcf96f7859c45dc02d
 	     	{
 	    		line(i,TDGOC_Y+1,i,TDCUOI_Y-1);
 	    	}
+<<<<<<< HEAD
+
+=======
+>>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
 	//ve ngang
 	for(int i=TDGOC_Y+5;i<TDCUOI_Y;i+=5)
 		{
