@@ -3,9 +3,9 @@ Order=0,1
 Focused=0
 [Editor_0]
 <<<<<<< HEAD
-CursorCol=4
-CursorRow=93
-TopLine=28
+CursorCol=30
+CursorRow=57
+TopLine=40
 =======
 <<<<<<< HEAD
 CursorCol=17
@@ -19,7 +19,7 @@ TopLine=177
 >>>>>>> e6d8d0224be2f982f12786af7e1e7331fd156fab
 LeftChar=1
 [Editor_1]
-CursorCol=19
-CursorRow=1
+CursorCol=17
+CursorRow=3
 TopLine=1
 LeftChar=1
