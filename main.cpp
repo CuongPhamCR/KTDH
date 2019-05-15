@@ -13,6 +13,9 @@ void DDALine(int x1,int y1,int x2,int y2,int c); // ve doan thang
 void vetoado();
 void menu();
 void cuong();
+void hinhvuong(int x1, int y1, int x2, int y2);
+void tamgiac(int x1, int y1, int x2, int y2, int x3, int y3);
+void hinhthang(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
 void Elipse(int x_center,int y_center,int a,int b,int color);
 void put5pixel(int x,int y);
 void MidPoint(int x1,int y1,int x2,int y2);
@@ -28,48 +31,71 @@ void put5pixel(int x,int y)
 }
 void cuong() {
 	int x, y,diem=0;
-	int d1x,d1y;
+	int d1x,d1y,d2x,d2y,d3x,d3y;
 	int x1,y1,x2,y2,kt=0;
-	elipMidpoint(700,300, 80, 50);	
-	while (1) {
+//	elipMidpoint(700,300, 80, 50);	
+	hinhthang(1025,505,1280,505,1185,575,1095,575);
+	tamgiac(1055,505,1115,400,1120,490);
+	tamgiac(1115,400,1200,505,1120,490);
+	MidPoint(1120,505,1115,400);
+	//while (1) 
+	{
 		if (ismouseclick(WM_LBUTTONDOWN)){
 			getmouseclick(WM_LBUTTONDOWN, x, y);
-			diem++;
-			
-			if(diem==1)
-			{
-				d1x=x;
-				d1y=y;
-			}
-			cout << x << " " << y << endl;
-
-			if (kt==0) drawCircleMidpoint(d1x,d1y,20);			
-			kt=1;
-			if(x>=TDGOC_X && y>=TDGOC_Y)
-			{
-				put5pixel(x,y);
-			}
-			//ve doan thang
-			if(diem==2)
-			{
-				if(d1x>TDGOC_X && x>TDGOC_X)
-				{
-					//DDALine(d1x,d1y,x,y,3);
-					drawCircleMidpoint(x,y,40);					
-					MidPoint(d1x,d1y,x,y);
-					//Elipse(d1x,d1y,x,y,3);
-				}
-				diem=0;
-			}
-					
-			// xoa nhung gi co tren do thi		
+			diem++;	
 			if(x>=350 && x<=420 && y>=85 && y<=115)
 				{
+					// xoa nhung gi co tren do thi	
 					cleardevice();
 					menu();
 				}
-		}
+			else{
+				
+			/*	if(diem==1)
+				{
+					d1x=x;
+					d1y=y;
+				}
+				cout << x << " " << y << endl;
+	//			if (kt==0) drawCircleMidpoint(d1x,d1y,20);			
+	//			kt=1;
+				if(x>=TDGOC_X && y>=TDGOC_Y)
+				{
+					put5pixel(x,y);
+				}
+				//ve doan thang
+				if(diem==2)
+				{
+					d2x=x;
+					d2y=y;
+	//				if(d1x>TDGOC_X && x>TDGOC_X)
+	//				{
+	//					//DDALine(d1x,d1y,x,y,3);
+	//				//	drawCircleMidpoint(x,y,40);					
+	//				//	MidPoint(d1x,d1y,x,y);
+	//					//Elipse(d1x,d1y,x,y,3);
+	//					
+	//					hinhvuong(d1x,d1y,d2x,d2y);
+	//					
+	//				}
+				//	diem=0;
+				}
+				
+				if(diem==3){
+					d3x=x;
+					d3y=y;
+				//	tamgiac(d1x,d1y,d2x,d2y,x,y);
+				//	diem=0;
+				}
+				if(diem==4){
+					hinhthang(d1x,d1y,d2x,d2y,d3x,d3y,x,y);
+					diem=0;
+				}				
+			} */	
+			
+			}
 		delay(0.00001);
+		}
 	}
 	return;
 }
@@ -93,6 +119,31 @@ void vetoado()
 	setcolor(12);
 	line(TD5pixel_X,TDGOC_Y+1,TD5pixel_X,TDCUOI_Y-1);// ve truc Ox
 	line(TDGOC_X+1,TD5pixel_Y,TDCUOI_X-1,TD5pixel_Y);// ve truc Oy
+}
+void draw8point(int x,int y,int x0,int y0){ //ve 8 diem doi xung
+	putpixel(x0+x,y0+y,c);
+	putpixel(x0-x,y0-y,c);
+	putpixel(x0+x,y0-y,c);
+	putpixel(x0-x,y0+y,c);
+	putpixel(x0+y,y0+x,c);
+	putpixel(x0-y,y0-x,c);
+	putpixel(x0+y,y0-x,c);
+	putpixel(x0-y,y0+x,c);
+}
+void circle_bresenham(int x0,int y0,int r){ //ve duong tron
+	int c;
+	int x=0, y=r;
+	int p=3-2*r;
+	for(x;x<=y;x++){
+		if(p<0){
+			p+=4*x+6;
+		}
+		else{
+			p+=4*(x-y)+10;
+			y--;
+		}
+		draw8point(x,y,x0,y0);
+	}
 }
 
 //ve duong tron mid point
@@ -186,8 +237,28 @@ void MidPoint(int x1, int y1, int x2, int y2){
 			delay(10);
 		}
 	}
-}
+} 
 
+// ve hinh vuong
+void hinhvuong(int x1, int y1, int x2, int y2){
+	MidPoint(x1,y1,x2,y1);
+	MidPoint(x1,y1,x1,y2);
+	MidPoint(x2,y2,x2,y1);
+	MidPoint(x2,y2,x1,y2);
+}
+// ve tam giac
+void tamgiac(int x1, int y1, int x2, int y2, int x3, int y3){
+	MidPoint(x1,y1,x2,y2);
+	MidPoint(x1,y1,x3,y3);
+	MidPoint(x2,y2,x3,y3);
+}
+// hinhthang
+void hinhthang(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4){
+	MidPoint(x1,y1,x2,y2);
+	MidPoint(x1,y1,x4,y4);
+	MidPoint(x2,y2,x3,y3);
+	MidPoint(x3,y3,x4,y4);
+}
 //ve elip midpoint
 void plot(int xc, int yc, int x, int y)
 {
@@ -196,6 +267,7 @@ void plot(int xc, int yc, int x, int y)
     put5pixel(xc+x, yc-y);
     put5pixel(xc-x, yc-y);
 }
+
 void elipMidpoint(int xc,int yc, int a, int b)
 {
     int x, y, fx, fy, a2, b2, p;
@@ -245,64 +317,6 @@ void elipMidpoint(int xc,int yc, int a, int b)
     }
 }
 
-// ve hinh elip
-
-void Ve4diem(int xc,int yc,int x, int y,int color)//ve 4 diem doi xung
-{
-    put5pixel(xc+x,yc+y);
-    put5pixel(xc-x,yc+y);
-    put5pixel(xc-x,yc-y);
-    put5pixel(xc+x,yc-y);
-    //delay(50);
-//    putpixel(xc+x,yc+y,color);
-//    putpixel(xc-x,yc+y,color);
-//    putpixel(xc-x,yc-y,color);
-//    putpixel(xc+x,yc-y,color);
-}
-void Elipse(int x_center,int y_center,int a,int b,int color)// ve elipse
-{
-    float p,a2,b2;
-    int x,y;
-    a2=pow(a,2);
-    b2=pow(b,2);
-    x=0;
-    y=b;
-     
-    p=2*((float)b2/a2)-(2*b)+1;
-     
-    //ve nhanh thu 1(tu tren xuong )
-    while(((float)b2/a2)*x<=y)
-    {
-        Ve4diem(y_center,y_center,x,y,color);
-        if(p<0)
-        {
-            p=p+2*((float)b2/a2)*(2*x+3);
-        }
-        else{
-            p= p- 4*y + 2*((float)b2/a2)*(2*x+3);
-            y--;
-        }
-        x++;
-    }
-    //ve nhanh thu 2(tu duoi len )
-    y=0;
-    x=a;
-    p=2*((float)a2/b2)-2*a+1;
-    while(((float)a2/b2)*y<=x)
-    {
-        Ve4diem(y_center,y_center,x,y,color);
-        if(p<0)
-        {
-            p=p +2*((float)a2/b2)*(2*y+3);
-        }
-        else
-        {
-            p=p- 4*x + 2*((float)a2/b2)*(2*y+3);
-            x=x-1;
-        }
-        y=y+1;
-    }
-}
 void menu()
 {
 	setcolor(0);
