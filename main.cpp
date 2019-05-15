@@ -7,6 +7,7 @@
 #include "mylib.h"
 #include "data.h"
 #include <graphics.h>
+#define ROUND(a) (int)(a+0.5)
 using namespace std;
 void DDALine(int x1,int y1,int x2,int y2,int c); // ve doan thang
 void vetoado();
@@ -15,6 +16,8 @@ void cuong();
 void Elipse(int x_center,int y_center,int a,int b,int color);
 void put5pixel(int x,int y);
 void MidPoint(int x1,int y1,int x2,int y2);
+void drawCircleMidpoint(int xc, int yc, int r); // duong tron midpoint
+void elipMidpoint(int xc,int yc, int a, int b); // elip midpoint
 void put5pixel(int x,int y)
 {
 	int x1,x2,y1,y2;
@@ -26,11 +29,13 @@ void put5pixel(int x,int y)
 void cuong() {
 	int x, y,diem=0;
 	int d1x,d1y;
-	int x1,y1,x2,y2;
+	int x1,y1,x2,y2,kt=0;
+	elipMidpoint(700,300, 80, 50);	
 	while (1) {
 		if (ismouseclick(WM_LBUTTONDOWN)){
 			getmouseclick(WM_LBUTTONDOWN, x, y);
 			diem++;
+			
 			if(diem==1)
 			{
 				d1x=x;
@@ -38,6 +43,11 @@ void cuong() {
 			}
 			cout << x << " " << y << endl;
 
+<<<<<<< HEAD
+=======
+			if (kt==0) drawCircleMidpoint(d1x,d1y,20);			
+			kt=1;
+>>>>>>> 3bcdccfed0aa17cdbfe84fb0c89dbb5708970817
 			if(x>=TDGOC_X && y>=TDGOC_Y)
 			{
 				put5pixel(x,y);
@@ -47,7 +57,8 @@ void cuong() {
 			{
 				if(d1x>TDGOC_X && x>TDGOC_X)
 				{
-					//DDALine(d1x,d1y,x,y,3);					
+					//DDALine(d1x,d1y,x,y,3);
+					drawCircleMidpoint(x,y,40);					
 					MidPoint(d1x,d1y,x,y);
 					//Elipse(d1x,d1y,x,y,3);
 				}
@@ -73,16 +84,24 @@ void vetoado()
 {
 	setcolor(3);
 	// ve doc
+<<<<<<< HEAD
 	for(int i=TDGOC_X+5;i<=TDCUOI_X;i+=5)
+=======
+	for(int i=TDGOC_X+5;i<TDCUOI_X;i+=5)
+>>>>>>> 3bcdccfed0aa17cdbfe84fb0c89dbb5708970817
 	     	{
-	    		line(i,TDGOC_Y,i,TDCUOI_Y);
+	    		line(i,TDGOC_Y+1,i,TDCUOI_Y-1);
 	    	}
 	//ve ngang
 	for(int i=TDGOC_Y+5;i<TDCUOI_Y;i+=5)
 		{
-			line(TDGOC_X+1,i,TDCUOI_X,i);
+			line(TDGOC_X+1,i,TDCUOI_X-1,i);
 		}
+	setcolor(12);
+	line(TD5pixel_X,TDGOC_Y+1,TD5pixel_X,TDCUOI_Y-1);// ve truc Ox
+	line(TDGOC_X+1,TD5pixel_Y,TDCUOI_X-1,TD5pixel_Y);// ve truc Oy
 }
+<<<<<<< HEAD
 void draw8point(int x,int y,int x0,int y0){ //ve 8 diem doi xung
 	putpixel(x0+x,y0+y,c);
 	putpixel(x0-x,y0-y,c);
@@ -107,22 +126,40 @@ void circle_bresenham(int x0,int y0,int r){ //ve duong tron
 		}
 		draw8point(x,y,x0,y0);
 	}
+=======
+
+//ve duong tron mid point
+void put8pixel(int xc, int yc, int x, int y)
+{
+	// ve tam diem doi xung
+    put5pixel(x + xc, y + yc);
+    put5pixel(-x + xc, y + yc);
+    put5pixel(x + xc, -y + yc);
+    put5pixel(-x + xc, -y + yc);
+    put5pixel( y + xc, x + yc);
+    put5pixel(-y + xc, x + yc);
+    put5pixel(y + xc, -x + yc);
+    put5pixel(-y + xc, -x + yc);
+>>>>>>> 3bcdccfed0aa17cdbfe84fb0c89dbb5708970817
 }
-// thuat toan ve doan thang DDA
-void DDALine(int x1,int y1,int x2,int y2,int c) {
-	int x=x1;
-	float y=y1;
-	float k=(float)abs(y2-y1)/abs(x2-x1);
-	//putpixel(x,round(y),c);
-	put5pixel(x,y);
-	for(int i=x1;i<=x2;i++)
-	{
-		x++;
-		y=y+k;
-		//putpixel(x,round(y),c);
-		put5pixel(x,y);
-	}
+void drawCircleMidpoint(int xc, int yc, int r)
+{
+    int x = 0; int y = r;
+    int f = 1 - r;
+    put8pixel(xc, yc, x, y);
+    while (x < y)
+    {
+        if (f < 0) f += (x << 1) + 3;
+        else
+        {
+            y-=5;
+            f += ((x - y) << 1) + 5;
+        }
+        x+=5;
+        put8pixel(xc, yc, x, y);
+    }
 }
+
 // Ve duong thang midpoint
 void MidPoint(int x1, int y1, int x2, int y2){
 	int x, y, dX, dY, p1, p2, absdX, absdY, xE, yE;
@@ -183,6 +220,63 @@ void MidPoint(int x1, int y1, int x2, int y2){
 			delay(10);
 		}
 	}
+}
+
+//ve elip midpoint
+void plot(int xc, int yc, int x, int y)
+{
+    put5pixel(xc+x, yc+y);
+    put5pixel(xc-x, yc+y);
+    put5pixel(xc+x, yc-y);
+    put5pixel(xc-x, yc-y);
+}
+void elipMidpoint(int xc,int yc, int a, int b)
+{
+    int x, y, fx, fy, a2, b2, p;
+    x = 0;
+    y = b;
+    a2 = a*a;
+    b2 = b*b;
+    fx = 0;
+    fy = 2 * a2 * y;
+    plot(xc, yc, x, y);
+    p = ROUND(b2 -(a2*b) + (0.25*a2));//p=b2 - a2*b +a2/4
+    while(fx<fy)
+    {
+        x++;
+        fx += 2*b2;
+        delay(10);
+        if(p<0)
+        {
+            p += b2*(2*x + 3);//p=p + b2*(2x +3)
+        }
+        else
+        {
+            y--;
+            p += b2*(2*x +3) + a2*(2- 2*y);//p=p +b2(2x +3) +a2(2-2y)
+            fy -= 2*a2;
+        }
+        plot(xc, yc, x, y);
+    }
+    p = ROUND(b2*(x +0.5)*(x +0.5) + a2*(y-1)*(y-1) - a2*b2);
+    //
+    while(y>0)
+    {
+        y--;
+        fy -= 2*a2;
+        delay(10);
+        if(p >=0)
+        {
+            p += a2*(3-2*y); //p=p +a2(3-2y)
+        }
+        else
+        {
+            x++;
+            fx += 2*b2;
+            p += b2*(2*x +2) +a2*(3- 2*y);//p=p+ b2(2x +2) + a2(3-2y)
+        }
+        plot(xc, yc, x, y);
+    }
 }
 
 // ve hinh elip
