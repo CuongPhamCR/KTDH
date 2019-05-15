@@ -34,10 +34,10 @@ void cuong() {
 	int d1x,d1y,d2x,d2y,d3x,d3y;
 	int x1,y1,x2,y2,kt=0;
 //	elipMidpoint(700,300, 80, 50);	
-	hinhthang(1025,505,1280,505,1175,575,1095,575);
-	tamgiac(1055,505,1115,400,1120,490);
-	tamgiac(1115,400,1200,505,1120,490);
-	MidPoint(1120,505,1115,400);
+	hinhthang(1025,505,1280,505,1210,575,1095,575);
+	tamgiac(1055,505,1115,400,1120,475);
+	tamgiac(1115,400,1120,475,1200,505);
+	MidPoint(1115,505,1115,400);
 	//while (1) 
 	{
 		if (ismouseclick(WM_LBUTTONDOWN)){
