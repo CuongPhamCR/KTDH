@@ -37,10 +37,7 @@ void cuong() {
 				d1y=y;
 			}
 			cout << x << " " << y << endl;
-<<<<<<< HEAD
-=======
-			
->>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
+
 			if(x>=TDGOC_X && y>=TDGOC_Y)
 			{
 				put5pixel(x,y);
@@ -63,11 +60,6 @@ void cuong() {
 					cleardevice();
 					menu();
 				}
-			
-<<<<<<< HEAD
-
-=======
->>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
 		}
 		delay(0.00001);
 	}
@@ -81,28 +73,16 @@ void vetoado()
 {
 	setcolor(3);
 	// ve doc
-<<<<<<< HEAD
-=======
-
->>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
 	for(int i=TDGOC_X+5;i<=TDCUOI_X;i+=5)
 	     	{
 	    		line(i,TDGOC_Y,i,TDCUOI_Y);
 	    	}
-<<<<<<< HEAD
-
-=======
->>>>>>> 00ad7c5cce8f5135f3f1f8e9482826bf2cdd6c44
 	//ve ngang
 	for(int i=TDGOC_Y+5;i<TDCUOI_Y;i+=5)
 		{
 			line(TDGOC_X+1,i,TDCUOI_X,i);
 		}
 }
-
-
-
-
 void draw8point(int x,int y,int x0,int y0){ //ve 8 diem doi xung
 	putpixel(x0+x,y0+y,c);
 	putpixel(x0-x,y0-y,c);
