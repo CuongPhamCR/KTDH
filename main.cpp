@@ -114,7 +114,7 @@ void vetoado()
 	//ve ngang
 	for(int i=TDGOC_Y+5;i<TDCUOI_Y;i+=5)
 		{
-			line(TDGOC_X+1,i,TDCUOI_X-1,i);
+			line(TDGOC_X+1,i,TDCUOI_X,i);
 		}
 	setcolor(12);
 	line(TD5pixel_X,TDGOC_Y+1,TD5pixel_X,TDCUOI_Y-1);// ve truc Ox
@@ -360,10 +360,31 @@ void menu()
 	line(2,70,450,70);
 	//nut xoa
 	settextstyle(0,0,2);
+	setcolor(0);
+	rectangle(300,85,385,115);
 	setcolor(4);
-	rectangle(350,85,420,115);
-	outtextxy(365,92,"Xoa");
+	outtextxy(320,92,"Xoa");
 	// toa do 2D (560,0,1339,685);
+		// Hinh dieu
+	settextstyle(0,0,2);
+	setcolor(0);
+	rectangle(25,85,210,115);
+	setcolor(4);
+	outtextxy(45,92,"Hinh Dieu");
+		// Hinh thuyen
+	setcolor(0);
+	rectangle(25,125,210,155);
+	setcolor(4);
+	outtextxy(30,130,"Hinh Thuyen");
+		//nut start
+	setcolor(0);
+	rectangle(300,125,385,155);
+	setcolor(4);
+	outtextxy(302,130,"Start");
+	setcolor(0);
+	line(1,250,450,250);
+	line(1,280,450,280);
+	outtextxy(100,255,"Toa do cac vat");
 	vetoado();
 
 }
