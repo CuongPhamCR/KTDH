@@ -29,16 +29,33 @@ void put5pixel(int x,int y)
 	setfillstyle(1,0);				
 	bar(x1,y1,x2,y2);
 }
+void tinhtien_diem(int x,int y,float a,float b)
+{
+	int x1,y1;
+	x1=x+a;
+	y1=y+b;
+//	MidPoint(x,y,x1,y1);
+//	cleardevice();
+//	menu();	
+	put5pixel(x1,y1);
+}
+void doixung_diem_tam(int x,int y)
+{
+	int x1,y1;
+	x1=(TD5pixel_X-x)+TD5pixel_X;
+	y1=(TD5pixel_Y-y)+TD5pixel_Y;
+	put5pixel(x1,y1);
+}
 void cuong() {
 	int x, y,diem=0;
 	int d1x,d1y,d2x,d2y,d3x,d3y;
 	int x1,y1,x2,y2,kt=0;
 //	elipMidpoint(700,300, 80, 50);	
-	hinhthang(1025,505,1280,505,1175,575,1095,575);
-	tamgiac(1055,505,1115,400,1120,490);
-	tamgiac(1115,400,1200,505,1120,490);
-	MidPoint(1120,505,1115,400);
-	//while (1) 
+	hinhthang(1025,505,1280,505,1210,575,1095,575);
+	tamgiac(1055,505,1115,400,1120,475);
+	tamgiac(1115,400,1120,475,1200,505);
+	MidPoint(1115,505,1115,400);
+	while (1) 
 	{
 		if (ismouseclick(WM_LBUTTONDOWN)){
 			getmouseclick(WM_LBUTTONDOWN, x, y);
@@ -49,8 +66,13 @@ void cuong() {
 					cleardevice();
 					menu();
 				}
-			else{
-				
+			else{				
+				if(x>=TDGOC_X && y>=TDGOC_Y)
+				{
+					put5pixel(x,y);
+				}
+				//tinhtien_diem(x,y,100,50);
+				doixung_diem_tam(x,y);
 			/*	if(diem==1)
 				{
 					d1x=x;
@@ -59,10 +81,7 @@ void cuong() {
 				cout << x << " " << y << endl;
 	//			if (kt==0) drawCircleMidpoint(d1x,d1y,20);			
 	//			kt=1;
-				if(x>=TDGOC_X && y>=TDGOC_Y)
-				{
-					put5pixel(x,y);
-				}
+				
 				//ve doan thang
 				if(diem==2)
 				{
@@ -93,16 +112,15 @@ void cuong() {
 				}				
 			} */	
 			
-			}
-		delay(0.00001);
+			}		
 		}
+		delay(0.00001);
 	}
 	return;
 }
 // toa do khung ve
 
 int c = 3;
-void menu();
 void vetoado()
 {
 	setcolor(3);
