@@ -60,6 +60,7 @@ void run(int x,int y)
 			pieslice(x0,i,0,360,10);
 		}
 		//xoa bong trong gon
+				delay(300);
 				setfillstyle(1,15);
 				setcolor(15);
 				pieslice(x0,i,0,360,30);
@@ -88,10 +89,10 @@ void run(int x,int y)
 				pieslice(x0,i,0,360,10);			
 			}
 			//xoa bong trong gon
+				delay(300);
 				setfillstyle(1,15);
 				setcolor(15);
-				pieslice(x0,i,0,360,30);
-				delay(50);
+				pieslice(x0,i,0,360,30);				
 				vetoado_hinhtron(x0,i,40);	
 				drawCircleMidpoint(1027,517,15);
 		}
@@ -113,6 +114,7 @@ void run(int x,int y)
 				pieslice(x0,i,0,360,10);
 			}
 			//xoa bong trong gon
+				delay(300);
 				setfillstyle(1,15);
 				setcolor(15);
 				pieslice(x0,i,0,360,30);
