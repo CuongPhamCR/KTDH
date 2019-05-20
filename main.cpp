@@ -27,6 +27,7 @@ void drawCircleMidpoint(int xc, int yc, int r);
 void Bresenham_Circle(int xc, int yc, int r);
 void run();
 void vetoado_hinhtron(int x,int y,int r);
+void doixung_diem_tam(int &x1,int &y1);
 void Xuat_toa_do_Penalty(int x,int y);
 void put5pixel(int x,int y)
 {
@@ -35,6 +36,32 @@ void put5pixel(int x,int y)
 	x2=x1+5;y2=y1+5;
 	setfillstyle(1,0);				
 	bar(x1,y1,x2,y2);
+}
+void doi_xung_tam_giac_qua_tam(int x1, int y1, int x2, int y2, int x3, int y3)
+{
+	doixung_diem_tam(x1,y1);
+	doixung_diem_tam(x2,y2);
+	doixung_diem_tam(x3,y3);
+	tamgiac(x1,y1,x2,y2,x3,y3); 	
+}
+void ve_chong_chong()
+{
+	//ve tam giac 1,3
+	tamgiac(945,340,945+100,340+100,945+200,340);
+	doi_xung_tam_giac_qua_tam(945,340,945+100,340+100,945+200,340);
+	//ve tam giac 2,4
+	tamgiac(945,340,945+100,340-100,945,340-200);
+	doi_xung_tam_giac_qua_tam(945,340,945+100,340-100,945,340-200);
+}
+
+int QUAY_diem(int x,int y,int A)
+{
+	double x1,y1;
+	x1=x*cos(A)-y*sin(A);
+	y1=x*sin(A)+y*cos(A);
+	x=int(x1);
+	y=int(y1);
+	return 1;
 }
 void Xuat_toa_do_Penalty(int x,int y,int r)
 {
@@ -82,15 +109,12 @@ void Xuat_toa_do_Penalty(int x,int y,int r)
 }
 void run(int x,int y)
 {
-	int x0=1027,y0=517,r=15,bien=20;
-	//Mid_circle(1027,517,15);
+	int x0=1027,y0=517,r=15;
 	drawCircleMidpoint(x0,y0,r);
 	setfillstyle(1,4);
 	setcolor(4);
 	pieslice(1027,517,0,360,10);
 	int i;
-	(841,132,1212,139);
-	if (y<132) y=132;
 	if(x-x0>=-r && x-x0<=r) // ve thang khung thanh
 	{
 		 for(i=y0;i>=y;i-=5)
@@ -98,25 +122,23 @@ void run(int x,int y)
 			setfillstyle(1,15);
 			setcolor(15);
 			pieslice(x0,i,0,360,30);
-			vetoado_hinhtron(x0,i,35);		
-			//setcolor(9);
-			//Mid_circle(x0,i,r);
+			vetoado_hinhtron(x0,i,40);		
+			setcolor(0);
 			drawCircleMidpoint(x0,i,r);
 			setfillstyle(1,4);
 			setcolor(4);
 			pieslice(x0,i,0,360,10);
 			Xuat_toa_do_Penalty(x0,i,r);
-			delay(bien);			
+			delay(30);
 		}
 		//xoa bong trong gon
-				delay(300);
 				setfillstyle(1,15);
 				setcolor(15);
 				pieslice(x0,i,0,360,30);
-				delay(50);
+				//delay(50);
 				vetoado_hinhtron(x0,i,35);	
 				drawCircleMidpoint(1027,517,15);
-				Xuat_toa_do_Penalty(1027,517,15);	
+				Xuat_toa_do_Penalty(1027,517,15);		
 	}
     else
     {
@@ -124,57 +146,91 @@ void run(int x,int y)
     	{    		
     		for(i=y0;i>=y;i-=5)
     		{  
-    		if(x0<x) x0=x;
-    		else x0-=3;  		
-				setfillstyle(1,15);
-				setcolor(15);
-				pieslice(x0,i,0,360,30);
-				vetoado_hinhtron(x0,i,40);		
-				//setcolor(9);
-				//Mid_circle(x0,i,r);
-				drawCircleMidpoint(x0,i,r);
-				setfillstyle(1,4);
-				setcolor(4);
-				pieslice(x0,i,0,360,10);
-				Xuat_toa_do_Penalty(x0,i,r);
-				delay(bien);			
+    		if(x>840){
+    			if(x0<x) x0=x;
+    	    	else x0-=3;  
+                
+                	setfillstyle(1,15);
+			    	setcolor(15);
+			    	pieslice(x0,i,0,360,33);
+			    	vetoado_hinhtron(x0,i,40);		
+			    	setcolor(0);
+			    	drawCircleMidpoint(x0,i,r);
+		    		setfillstyle(1,4);
+		    		setcolor(4);
+		    		pieslice(x0,i,0,360,10);
+					Xuat_toa_do_Penalty(x0,i,r);	
+		    	    delay(30);
+			}
+			else{
+				if(x0<x) x0=x0;
+    	    	else x0-=7;  
+                
+                	setfillstyle(1,15);
+			    	setcolor(15);
+			    	pieslice(x0,i,0,360,33);
+			    	vetoado_hinhtron(x0,i,40);		
+			    	setcolor(0);
+			    	drawCircleMidpoint(x0,i,r);
+		    		setfillstyle(1,4);
+		    		setcolor(4);
+		    		pieslice(x0,i,0,360,10);
+					Xuat_toa_do_Penalty(x0,i,r);	
+		    	    delay(30);
+			}
+								
 			}
 			//xoa bong trong gon
-				delay(300);
-				setfillstyle(1,15);
-				setcolor(15);
-				pieslice(x0,i,0,360,30);				
-				vetoado_hinhtron(x0,i,40);	
-				drawCircleMidpoint(1027,517,15);
-				Xuat_toa_do_Penalty(1027,517,15);
-		}
-		else{
-			for(i=y0;i>=y;i-=5)
-    		{  
-	    		if(x0>x) x0=x;
-	    		else x0+=3;  		
-				setfillstyle(1,15);
-				setcolor(15);
-				pieslice(x0,i,0,360,30);
-				vetoado_hinhtron(x0,i,40);		
-				//setcolor(9);
-				//Mid_circle(x0,i,r);
-				drawCircleMidpoint(x0,i,r);
-				setfillstyle(1,4);
-				setcolor(4);
-				pieslice(x0,i,0,360,10);
-				Xuat_toa_do_Penalty(x0,i,r);
-				delay(bien);
-			}
-			//xoa bong trong gon
-				delay(300);
 				setfillstyle(1,15);
 				setcolor(15);
 				pieslice(x0,i,0,360,30);
 				delay(50);
+				vetoado_hinhtron(x0,i,35);	
+				drawCircleMidpoint(1027,517,15);
+				Xuat_toa_do_Penalty(1027,517,15);	
+		}
+		else{
+			for(i=y0;i>=y;i-=5)
+    		{ 
+    		    if(x>1210){
+    		    	if(x0>x) x0=x0;
+	    	    	else x0+=7;  		
+			    	setfillstyle(1,15);
+			    	setcolor(15);
+		    		pieslice(x0,i,0,360,30);
+	    			vetoado_hinhtron(x0,i,40);		
+	    			setcolor(0);
+    				drawCircleMidpoint(x0,i,r);
+    				setfillstyle(1,4);
+    				setcolor(4);
+    				pieslice(x0,i,0,360,10);
+    				Xuat_toa_do_Penalty(x0,i,r);
+    				delay(30);
+				}
+				else{
+					if(x0>x) x0=x;
+	    	    	else x0+=3;  		
+		    		setfillstyle(1,15);
+	    			setcolor(15);
+	    			pieslice(x0,i,0,360,30);
+	     			vetoado_hinhtron(x0,i,40);		
+	    			setcolor(0);
+    				drawCircleMidpoint(x0,i,r);
+    				setfillstyle(1,4);
+    				setcolor(4);
+    				pieslice(x0,i,0,360,10);
+    				Xuat_toa_do_Penalty(x0,i,r);
+    				delay(30);
+				}
+			}
+			//xoa bong trong gon
+				setfillstyle(1,15);
+				setcolor(15);
+				pieslice(x0,i,0,360,30);
+			//	delay(50);
 				vetoado_hinhtron(x0,i,40);
 				drawCircleMidpoint(1027,517,15);
-				Xuat_toa_do_Penalty(1027,517,15);
+				Xuat_toa_do_Penalty(1027,517,15);	
 					
 		}
 	}
@@ -201,22 +257,41 @@ void tinhtien_diem(int x,int y,float a,float b)
 	y1=y+b;
 	put5pixel(x1,y1);
 }
-void doixung_diem_tam(int x,int y)
+void doixungquatruc_OX(int &x, int &y){
+   	y= TD5pixel_Y - (517-TD5pixel_Y)-1;
+    x=1027;
+    drawCircleMidpoint(x,y,15);
+    setfillstyle(1,4);
+	setcolor(4);
+	pieslice(x,y,0,360,10);
+}
+void doixungquatruc_OY(int &x, int &y){
+	x= TD5pixel_X - (1027-TD5pixel_X)-1;
+    y=517;
+    drawCircleMidpoint(x,y,15);
+    setfillstyle(1,4);
+	setcolor(4);
+	pieslice(x,y,0,360,10);
+}
+void doixung_diem_tam(int &x,int &y)
 {
-	int x1,y1;
-	x1=(TD5pixel_X-x)+TD5pixel_X;
-	y1=(TD5pixel_Y-y)+TD5pixel_Y;
-	put5pixel(x1,y1);
+	x=(TD5pixel_X-1027)+TD5pixel_X-1;
+	y=(TD5pixel_Y-517)+TD5pixel_Y-1;
+	drawCircleMidpoint(x,y,15);
+    setfillstyle(1,4);
+	setcolor(4);
+	pieslice(x,y,0,360,10);
 }
 void cuong() {
 	int x, y,diem=0;
 	int start=0,kt=0;
+//	ve_chong_chong();
 	while (1) 
 	{
 		if (ismouseclick(WM_LBUTTONDOWN)){
 			getmouseclick(WM_LBUTTONDOWN, x, y);
 			cout << x << " " << y << endl;
-			if(x>=350 && x<=420 && y>=85 && y<=115)
+			if(x>=300 && x<=3850 && y>=85 && y<=115)
 				{
 					// xoa nhung gi co tren do thi	
 					cleardevice();
@@ -229,6 +304,7 @@ void cuong() {
 				{
 					put5pixel(x,y);				
 				}
+				
 				if(start==1)
 				{					
 						run(x,y);
@@ -238,6 +314,16 @@ void cuong() {
 						setcolor(4);
 						pieslice(1027,517,0,360,10);
 				}
+				if(start==2){	
+					doixungquatruc_OX(x,y);
+				}
+				if(start==3){
+					doixungquatruc_OY(x,y);
+				}
+				if(start==4){
+					doixung_diem_tam(x,y);
+				}
+				// nut pennaty
 				if(x>=25 && x<=210 && y>=85 && y<=115)
 					{
 							KhungThanh();
@@ -248,13 +334,47 @@ void cuong() {
 							pieslice(1027,517,0,360,10);
 							kt=1;						
 					}
+				// nut doi xung OY
+				if(x>=25 && x<=210 && y>=165 && y<=195){
+					drawCircleMidpoint(1027,517,15);
+					setfillstyle(1,4);
+					setcolor(4);
+					pieslice(1027,517,0,360,10);
+				    kt=3;
+				}
+				// nut doi xung OX
+				if(x>=25 && x<=210 && y>=125 && y<=155){
+					drawCircleMidpoint(1027,517,15);
+					setfillstyle(1,4);
+					setcolor(4);
+					pieslice(1027,517,0,360,10);
+				    kt=2;
+				}
+				//nut doi xung tam O
+				if(x>=25 && x<=210 && y>=205 && y<=235){
+					drawCircleMidpoint(1027,517,15);
+					setfillstyle(1,4);
+					setcolor(4);
+					pieslice(1027,517,0,360,10);
+				    kt=4;
+			    }
 				if(x>=300 && x<=385 && y>=125 && y<=155) 
 					{
 						if(kt==1)
 						{
 							start=1;
 						}
-					}	
+						if(kt==2){
+							start=2;
+						}
+						if(kt==3){
+							start=3;
+						}
+						if(kt==4){
+							start=4;
+						}
+					}
+						
 			}			
 					
 		}
@@ -602,17 +722,26 @@ void menu()
 	setcolor(4);
 	outtextxy(320,92,"Xoa");
 	// toa do 2D (560,0,1339,685);
-		// Hinh dieu
 	settextstyle(0,0,2);
 	setcolor(0);
 	rectangle(25,85,210,115);
 	setcolor(4);
 	outtextxy(45,92,"Penalty");
-		// Hinh thuyen
+	
 	setcolor(0);
 	rectangle(25,125,210,155);
 	setcolor(4);
-	outtextxy(30,130,"Hinh Thuyen");
+	outtextxy(30,130,"Doi Xung OX");
+	
+	setcolor(0);
+	rectangle(25,165,210,195);
+	setcolor(4);
+	outtextxy(28,170,"Doi Xung OY");
+	
+	setcolor(0);
+	rectangle(25,205,210,235);
+	setcolor(4);
+	outtextxy(28,210,"Doi Xung O");
 		//nut start
 	setcolor(0);
 	rectangle(300,125,385,155);
