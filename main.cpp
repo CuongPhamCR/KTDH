@@ -11,8 +11,10 @@
 using namespace std;
 void DDALine(int x1,int y1,int x2,int y2,int c); // ve doan thang
 void vetoado();
+void taodo_de();
 void menu();
 void cuong();
+void hieu();
 void hinhvuong(int x1, int y1, int x2, int y2);
 void tamgiac(int x1, int y1, int x2, int y2, int x3, int y3);
 void hinhthang(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4);
@@ -46,15 +48,39 @@ void doixung_diem_tam(int x,int y)
 	y1=(TD5pixel_Y-y)+TD5pixel_Y;
 	put5pixel(x1,y1);
 }
+
+void hieu(){
+	int x,y;
+	while(1){
+	if(ismouseclick(WM_LBUTTONDOWN)){
+		getmouseclick(WM_LBUTTONDOWN, x, y);	
+		if(x>=350 && x<=420 && y>=85 && y<=115)
+			{
+				// xoa nhung gi co tren do thi	
+				cleardevice();
+				menu();
+			}
+	    else{				
+			if(x>=TDGOC_X && y>=TDGOC_Y)
+				{
+				//	put5pixel(x,y);
+					hinhvuong(900,400,850,350);
+				}	
+        }
+    }
+    delay(0.00001);
+    }
+    return;
+}
 void cuong() {
 	int x, y,diem=0;
 	int d1x,d1y,d2x,d2y,d3x,d3y;
 	int x1,y1,x2,y2,kt=0;
 //	elipMidpoint(700,300, 80, 50);	
-	hinhthang(1025,505,1280,505,1210,575,1095,575);
-	tamgiac(1055,505,1115,400,1120,475);
-	tamgiac(1115,400,1120,475,1200,505);
-	MidPoint(1115,505,1115,400);
+//	hinhthang(1025,505,1280,505,1210,575,1095,575);
+//	tamgiac(1055,505,1115,400,1120,475);
+//	tamgiac(1115,400,1120,475,1200,505);
+//	MidPoint(1115,505,1115,400);
 	while (1) 
 	{
 		if (ismouseclick(WM_LBUTTONDOWN)){
@@ -65,6 +91,7 @@ void cuong() {
 					// xoa nhung gi co tren do thi	
 					cleardevice();
 					menu();
+					
 				}
 			else{				
 				if(x>=TDGOC_X && y>=TDGOC_Y)
@@ -137,6 +164,19 @@ void vetoado()
 	setcolor(12);
 	line(TD5pixel_X,TDGOC_Y+1,TD5pixel_X,TDCUOI_Y-1);// ve truc Ox
 	line(TDGOC_X+1,TD5pixel_Y,TDCUOI_X-1,TD5pixel_Y);// ve truc Oy
+}
+void toado_de(){
+	setcolor(3);
+	// ve doc
+	for(int i=850+5;i<900;i+=5)
+	     	{
+	    		line(i,350+1,i,400-1);
+	    	}
+	//ve ngang
+	for(int i=350+5;i<400;i+=5)
+		{
+			line(850+1,i,900,i);
+		}
 }
 void draw8point(int x,int y,int x0,int y0){ //ve 8 diem doi xung
 	putpixel(x0+x,y0+y,c);
@@ -414,7 +454,10 @@ int main(){
 	cleardevice();
 	setcolor(3);
 	menu();
-	cuong();
+//	cuong();
+	hieu();
+//	toado_de();
+    vetoado();
 	getch();
 }
 
