@@ -11,6 +11,7 @@
 using namespace std;
 void DDALine(int x1,int y1,int x2,int y2,int c); // ve doan thang
 void vetoado();
+void taodo_de();
 void menu();
 void cuong();
 void hinhchunhat(int x1, int y1, int x2, int y2);
@@ -178,6 +179,7 @@ void cuong() {
 					// xoa nhung gi co tren do thi	
 					cleardevice();
 					menu();
+					
 				}
 			else{				
 				if(x>=TDGOC_X && y>=TDGOC_Y)
@@ -273,6 +275,34 @@ void vetoado()
 	line(TD5pixel_X,TDGOC_Y+1,TD5pixel_X,TDCUOI_Y-1);// ve truc Ox
 	line(TDGOC_X+1,TD5pixel_Y,TDCUOI_X-1,TD5pixel_Y);// ve truc Oy
 }
+void draw8point(int x,int y,int x0,int y0){ //ve 8 diem doi xung
+	putpixel(x0+x,y0+y,c);
+	putpixel(x0-x,y0-y,c);
+	putpixel(x0+x,y0-y,c);
+	putpixel(x0-x,y0+y,c);
+	putpixel(x0+y,y0+x,c);
+	putpixel(x0-y,y0-x,c);
+	putpixel(x0+y,y0-x,c);
+	putpixel(x0-y,y0+x,c);
+}
+void circle_bresenham(int x0,int y0,int r){ //ve duong tron
+	int c;
+	int x=0, y=r;
+	int p=3-2*r;
+	for(x;x<=y;x++){
+		if(p<0){
+			p+=4*x+6;
+		}
+		else{
+			p+=4*(x-y)+10;
+			y--;
+		}
+		draw8point(x,y,x0,y0);
+	}
+}
+
+//ve duong tron mid point
+
 /***** VE DUONG TRON ****/
 void put8pixel(int xc, int yc, int x, int y)
 {
@@ -573,13 +603,14 @@ void menu()
 }
 
 int main(){	
-//Hieu	
+
 	initwindow(1350,700);
 	setbkcolor(15);
 	cleardevice();
 	setcolor(3);
 	menu();
 	cuong();
+    vetoado();
 	getch();
 }
 
