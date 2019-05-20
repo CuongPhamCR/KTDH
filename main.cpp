@@ -27,6 +27,7 @@ void drawCircleMidpoint(int xc, int yc, int r);
 void Bresenham_Circle(int xc, int yc, int r);
 void run();
 void vetoado_hinhtron(int x,int y,int r);
+void Xuat_toa_do_Penalty(int x,int y);
 void put5pixel(int x,int y)
 {
 	int x1,x2,y1,y2;
@@ -35,30 +36,77 @@ void put5pixel(int x,int y)
 	setfillstyle(1,0);				
 	bar(x1,y1,x2,y2);
 }
+void Xuat_toa_do_Penalty(int x,int y,int r)
+{
+	//rectangle();
+	setcolor(0);
+	int x1=(x-TD5pixel_X)/5;
+	int y1=(TD5pixel_Y-y)/5;
+//	if (y>TD5pixel_Y) y=(TD5pixel_Y-y)/5;
+//	else y=(TD5pixel_Y-y)/5;
+	char s2[3]={0};
+	if(x>=1000) {
+			char s[4]={0};
+			itoa(x1,s,10);
+			outtextxy(250,350,s);
+	}
+	else 
+	{
+		outtextxy(250,350,"    ");
+		char s3[3]={};
+		itoa(x1,s3,10);
+		outtextxy(250,350,s3);
+	}
+	if(y>TD5pixel_Y)
+	{
+		char s1[3]={0};
+		itoa(y1,s1,10);
+		outtextxy(350,350,"   ");
+		outtextxy(350,350,s1);
+	}
+	else
+	{
+		char s4[2]={};
+		itoa(y1,s4,10);
+		outtextxy(350,350,s4);
+	}
+	itoa(r,s2,10);
+	outtextxy(10,300,"Qua bong:");
+	outtextxy(160,300,"Ban kinh =");
+	outtextxy(350,300,s2);
+	outtextxy(30,350,"Toa do Tam:");
+	outtextxy(215,350,"x=");
+	outtextxy(310,350,"y=");
+	delay(30);
+	
+}
 void run(int x,int y)
 {
-	int x0=1027,y0=517,r=15;
+	int x0=1027,y0=517,r=15,bien=20;
 	//Mid_circle(1027,517,15);
 	drawCircleMidpoint(x0,y0,r);
 	setfillstyle(1,4);
 	setcolor(4);
 	pieslice(1027,517,0,360,10);
 	int i;
+	(841,132,1212,139);
+	if (y<132) y=132;
 	if(x-x0>=-r && x-x0<=r) // ve thang khung thanh
 	{
 		 for(i=y0;i>=y;i-=5)
     	{    		
 			setfillstyle(1,15);
 			setcolor(15);
-			pieslice(x0,i,0,360,27);
-			delay(10);
-			vetoado_hinhtron(x0,i,40);		
-			setcolor(0);
+			pieslice(x0,i,0,360,30);
+			vetoado_hinhtron(x0,i,35);		
+			//setcolor(9);
 			//Mid_circle(x0,i,r);
 			drawCircleMidpoint(x0,i,r);
 			setfillstyle(1,4);
 			setcolor(4);
 			pieslice(x0,i,0,360,10);
+			Xuat_toa_do_Penalty(x0,i,r);
+			delay(bien);			
 		}
 		//xoa bong trong gon
 				delay(300);
@@ -66,8 +114,9 @@ void run(int x,int y)
 				setcolor(15);
 				pieslice(x0,i,0,360,30);
 				delay(50);
-				vetoado_hinhtron(x0,i,40);	
-				drawCircleMidpoint(1027,517,15);	
+				vetoado_hinhtron(x0,i,35);	
+				drawCircleMidpoint(1027,517,15);
+				Xuat_toa_do_Penalty(1027,517,15);	
 	}
     else
     {
@@ -80,14 +129,15 @@ void run(int x,int y)
 				setfillstyle(1,15);
 				setcolor(15);
 				pieslice(x0,i,0,360,30);
-				delay(10);
 				vetoado_hinhtron(x0,i,40);		
-				setcolor(0);
+				//setcolor(9);
 				//Mid_circle(x0,i,r);
 				drawCircleMidpoint(x0,i,r);
 				setfillstyle(1,4);
 				setcolor(4);
-				pieslice(x0,i,0,360,10);			
+				pieslice(x0,i,0,360,10);
+				Xuat_toa_do_Penalty(x0,i,r);
+				delay(bien);			
 			}
 			//xoa bong trong gon
 				delay(300);
@@ -96,6 +146,7 @@ void run(int x,int y)
 				pieslice(x0,i,0,360,30);				
 				vetoado_hinhtron(x0,i,40);	
 				drawCircleMidpoint(1027,517,15);
+				Xuat_toa_do_Penalty(1027,517,15);
 		}
 		else{
 			for(i=y0;i>=y;i-=5)
@@ -105,14 +156,15 @@ void run(int x,int y)
 				setfillstyle(1,15);
 				setcolor(15);
 				pieslice(x0,i,0,360,30);
-				delay(10);
 				vetoado_hinhtron(x0,i,40);		
-				setcolor(0);
+				//setcolor(9);
 				//Mid_circle(x0,i,r);
 				drawCircleMidpoint(x0,i,r);
 				setfillstyle(1,4);
 				setcolor(4);
 				pieslice(x0,i,0,360,10);
+				Xuat_toa_do_Penalty(x0,i,r);
+				delay(bien);
 			}
 			//xoa bong trong gon
 				delay(300);
@@ -122,6 +174,7 @@ void run(int x,int y)
 				delay(50);
 				vetoado_hinhtron(x0,i,40);
 				drawCircleMidpoint(1027,517,15);
+				Xuat_toa_do_Penalty(1027,517,15);
 					
 		}
 	}
@@ -146,9 +199,6 @@ void tinhtien_diem(int x,int y,float a,float b)
 	int x1,y1;
 	x1=x+a;
 	y1=y+b;
-//	MidPoint(x,y,x1,y1);
-//	cleardevice();
-//	menu();	
 	put5pixel(x1,y1);
 }
 void doixung_diem_tam(int x,int y)
@@ -160,80 +210,53 @@ void doixung_diem_tam(int x,int y)
 }
 void cuong() {
 	int x, y,diem=0;
-	int d1x,d1y,d2x,d2y,d3x,d3y;
-	int x1,y1,x2,y2,kt=0;
-	KhungThanh();
-	//Mid_circle(1028,517,15);
-	drawCircleMidpoint(1027,517,15);
-	setfillstyle(1,4);
-	setcolor(4);
-	pieslice(1027,517,0,360,10);
+	int start=0,kt=0;
 	while (1) 
 	{
 		if (ismouseclick(WM_LBUTTONDOWN)){
 			getmouseclick(WM_LBUTTONDOWN, x, y);
-			diem++;	
 			cout << x << " " << y << endl;
 			if(x>=350 && x<=420 && y>=85 && y<=115)
 				{
 					// xoa nhung gi co tren do thi	
 					cleardevice();
-					menu();
-					
+					menu();	
+					kt=0;
+					start=0;				
 				}
-			else{				
+			else{
 				if(x>=TDGOC_X && y>=TDGOC_Y)
 				{
-					put5pixel(x,y);
-					run(x,y);
-					KhungThanh();
-					drawCircleMidpoint(1027,517,15);
-					setfillstyle(1,4);
-					setcolor(4);
-					pieslice(1027,517,0,360,10);
+					put5pixel(x,y);				
 				}
-				//tinhtien_diem(x,y,100,50);
-				//doixung_diem_tam(x,y);
-			/*	if(diem==1)
-				{
-					d1x=x;
-					d1y=y;
+				if(start==1)
+				{					
+						run(x,y);
+						KhungThanh();
+						drawCircleMidpoint(1027,517,15);
+						setfillstyle(1,4);
+						setcolor(4);
+						pieslice(1027,517,0,360,10);
 				}
-				cout << x << " " << y << endl;
-	//			if (kt==0) drawCircleMidpoint(d1x,d1y,20);			
-	//			kt=1;
-				
-				//ve doan thang
-				if(diem==2)
-				{
-					d2x=x;
-					d2y=y;
-	//				if(d1x>TDGOC_X && x>TDGOC_X)
-	//				{
-	//					//DDALine(d1x,d1y,x,y,3);
-	//				//	drawCircleMidpoint(x,y,40);					
-	//				//	MidPoint(d1x,d1y,x,y);
-	//					//Elipse(d1x,d1y,x,y,3);
-	//					
-	//					hinhvuong(d1x,d1y,d2x,d2y);
-	//					
-	//				}
-				//	diem=0;
-				}
-				
-				if(diem==3){
-					d3x=x;
-					d3y=y;
-				//	tamgiac(d1x,d1y,d2x,d2y,x,y);
-				//	diem=0;
-				}
-				if(diem==4){
-					hinhthang(d1x,d1y,d2x,d2y,d3x,d3y,x,y);
-					diem=0;
-				}				
-			} */	
-			
-			}		
+				if(x>=25 && x<=210 && y>=85 && y<=115)
+					{
+							KhungThanh();
+							//Mid_circle(1028,517,15);
+							drawCircleMidpoint(1027,517,15);
+							setfillstyle(1,4);
+							setcolor(4);
+							pieslice(1027,517,0,360,10);
+							kt=1;						
+					}
+				if(x>=300 && x<=385 && y>=125 && y<=155) 
+					{
+						if(kt==1)
+						{
+							start=1;
+						}
+					}	
+			}			
+					
 		}
 		delay(0.00001);
 	}
@@ -306,6 +329,7 @@ void circle_bresenham(int x0,int y0,int r){ //ve duong tron
 /***** VE DUONG TRON ****/
 void put8pixel(int xc, int yc, int x, int y)
 {
+	setcolor(9);
     put5pixel(x + xc, y + yc);
     put5pixel(-x + xc, y + yc);
     put5pixel(x + xc, -y + yc);
