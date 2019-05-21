@@ -6,9 +6,15 @@ Focused=0
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 CursorCol=24
 CursorRow=361
 TopLine=344
+=======
+CursorCol=33
+CursorRow=279
+TopLine=269
+>>>>>>> 404b55d301d9c21bb3c16da355ee93716fb81da0
 =======
 CursorCol=1
 CursorRow=43
@@ -43,7 +49,7 @@ TopLine=177
 >>>>>>> e6d8d0224be2f982f12786af7e1e7331fd156fab
 LeftChar=1
 [Editor_1]
-CursorCol=17
-CursorRow=6
+CursorCol=19
+CursorRow=2
 TopLine=1
 LeftChar=1
